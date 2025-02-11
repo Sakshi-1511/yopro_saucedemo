@@ -1,5 +1,5 @@
 // playwright.config.js
-import { defineConfig } from '@playwright/test';
+import { defineConfig ,devices } from '@playwright/test';
 
 export default defineConfig({
     use: {
@@ -9,4 +9,15 @@ export default defineConfig({
         trace: 'on-first-retry',
     },
     reporter: [['html', { open: 'never' }]], // Generates an HTML report
+    projects: [
+        /* Test against desktop browsers */
+        {
+          name: 'chromium',
+          use: { ...devices['Desktop Chrome'] },
+        },
+        {
+          name: 'firefox',
+          use: { ...devices['Desktop Firefox'] },
+        }
+    ],
 });
